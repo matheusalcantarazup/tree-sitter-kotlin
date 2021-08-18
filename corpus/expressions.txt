@@ -41,3 +41,33 @@ expect(1)
       (value_arguments
         (value_argument
           (integer_literal))))))
+
+
+==================
+When expressions
+==================
+
+var weekDay = when(weekNumber){
+	1 -> "MONDAY"
+	2 -> "TUESDAY"
+	3 -> "WEDNESDAY"
+	4 -> "THURSDAY"
+	5 -> "FRIDAY"
+	6,7 -> "WEEKEND"	
+	else -> "NOT POSSIBLE"
+}
+
+---
+(source_file 
+    (property_declaration 
+        (variable_declaration (simple_identifier))
+            (when_expression
+                (when_subject (simple_identifier))
+                    (when_entry (when_condition (integer_literal)) (control_structure_body (line_string_literal)))
+                    (when_entry (when_condition (integer_literal)) (control_structure_body (line_string_literal)))
+                    (when_entry (when_condition (integer_literal)) (control_structure_body (line_string_literal)))
+                    (when_entry (when_condition (integer_literal)) (control_structure_body (line_string_literal)))
+                    (when_entry (when_condition (integer_literal)) (control_structure_body (line_string_literal)))
+                    (when_entry (when_condition (integer_literal)) (when_condition (integer_literal)) 
+                        (control_structure_body (line_string_literal))) 
+                    (when_entry (control_structure_body (line_string_literal))))))
