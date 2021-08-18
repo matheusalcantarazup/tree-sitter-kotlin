@@ -3692,6 +3692,10 @@
           "named": true
         },
         {
+          "type": "receiver_type",
+          "named": true
+        },
+        {
           "type": "simple_identifier",
           "named": true
         },
@@ -6956,6 +6960,37 @@
         },
         {
           "type": "when_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "receiver_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "nullable_type",
+          "named": true
+        },
+        {
+          "type": "parenthesized_type",
+          "named": true
+        },
+        {
+          "type": "type_arguments",
+          "named": true
+        },
+        {
+          "type": "type_identifier",
+          "named": true
+        },
+        {
+          "type": "type_modifiers",
           "named": true
         }
       ]

@@ -45,6 +45,44 @@ fun(x: Int, y: Int): Int = x + y
         (user_type (type_identifier))
             (function_body (additive_expression (simple_identifier) (simple_identifier)))))
 
+
+==================
+Extension Functions 
+==================
+
+fun Class.test() {}
+
+fun <T> Class<T>.test() {}
+
+fun Class<Int>.test() {}
+
+fun Any?.toString(): String {}
+
+---
+
+
+(source_file
+    (function_declaration
+        (receiver_type (type_identifier))
+            (simple_identifier) (function_body))
+    (function_declaration
+        (type_parameters (type_parameter (type_identifier)))
+            (receiver_type (type_identifier)
+                (type_arguments (type_projection
+                    (user_type (type_identifier)))))
+                        (simple_identifier) (function_body))
+    (function_declaration
+        (receiver_type (type_identifier)
+            (type_arguments (type_projection
+                (user_type (type_identifier)))))
+                    (simple_identifier) (function_body))
+    (function_declaration
+        (receiver_type (nullable_type
+            (user_type (type_identifier))))
+                (simple_identifier)
+                    (user_type (type_identifier)) (function_body)))
+
+
 ==================
 Functions with parameters
 ==================

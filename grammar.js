@@ -48,6 +48,7 @@ const PREC = {
 	COMMENT: 0,
     PARAMETER_WITH_OPTIONAL_TYPE: 2,
     PARAMETER_MODIFIERS: 2,
+    RECEIVER_TYPE: 2,
 };
 const DEC_DIGITS = token(sep1(/[0-9]+/, /_+/));
 const HEX_DIGITS = token(sep1(/[0-9a-fA-F]+/, /_+/));
@@ -262,6 +263,7 @@ module.exports = grammar({
 			optional($.modifiers),
 			"fun",
 			optional($.type_parameters),
+            optional(seq($.receiver_type, ".")),
 			$.simple_identifier,
 			$._function_value_parameters,
 			optional(seq(":", $._type)),
@@ -270,6 +272,15 @@ module.exports = grammar({
 		)),
 
 		function_body: $ => choice($._block, seq("=", $._expression)),
+
+        // NOTE: According to the Kotlin grammar, receiver_type should have a 
+        // $.type_reference instead of $._simple_user_type
+        // but using $.type_reference generate a wrong parse tree.
+        // Maybe this should be revisited
+        receiver_type: $ => prec(PREC.RECEIVER_TYPE, seq(
+            optional($.type_modifiers),
+            choice($.parenthesized_type, $.nullable_type, $._simple_user_type),
+        )),
 
 		variable_declaration: $ => seq(
 			// repeat($.annotation), TODO
