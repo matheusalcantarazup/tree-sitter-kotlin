@@ -2707,6 +2707,10 @@
         {
           "type": "SYMBOL",
           "name": "spread_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expect_expression"
         }
       ]
     },
@@ -2842,6 +2846,23 @@
           {
             "type": "SYMBOL",
             "name": "_expression"
+          }
+        ]
+      }
+    },
+    "expect_expression": {
+      "type": "PREC_LEFT",
+      "value": 2,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "expect"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "call_suffix"
           }
         ]
       }

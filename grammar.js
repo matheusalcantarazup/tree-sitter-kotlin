@@ -49,6 +49,7 @@ const PREC = {
     PARAMETER_WITH_OPTIONAL_TYPE: 2,
     PARAMETER_MODIFIERS: 2,
     RECEIVER_TYPE: 2,
+    EXPECT: 2,
 };
 const DEC_DIGITS = token(sep1(/[0-9]+/, /_+/));
 const HEX_DIGITS = token(sep1(/[0-9a-fA-F]+/, /_+/));
@@ -541,7 +542,8 @@ module.exports = grammar({
 			$.navigation_expression,
 			$.prefix_expression,
 			$.as_expression,
-			$.spread_expression
+			$.spread_expression,
+            $.expect_expression,
 		),
 
 		postfix_expression: $ => prec.left(PREC.POSTFIX, seq($._expression, $._postfix_unary_operator)),
@@ -562,6 +564,8 @@ module.exports = grammar({
 		as_expression: $ => prec.left(PREC.AS, seq($._expression, $._as_operator, $._type)),
 
 		spread_expression: $ => prec.left(PREC.SPREAD, seq("*", $._expression)),
+            
+        expect_expression: $ => prec.left(PREC.EXPECT, seq("expect", $.call_suffix)),
 
 		// Binary expressions
 
