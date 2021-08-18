@@ -26,6 +26,26 @@ fun <T> test() {}
 		(function_body)))
 
 ==================
+Anonymous functions
+==================
+
+fun(x: Int, y: Int): Int = x + y
+
+---
+
+(source_file 
+    (anonymous_function
+        (parameters_with_optional_type
+            (parameter_with_optional_type
+                (simple_identifier) (user_type 
+                    (type_identifier)))
+            (parameter_with_optional_type
+                (simple_identifier)
+                    (user_type (type_identifier))))
+        (user_type (type_identifier))
+            (function_body (additive_expression (simple_identifier) (simple_identifier)))))
+
+==================
 Functions with parameters
 ==================
 

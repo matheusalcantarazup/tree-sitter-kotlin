@@ -214,18 +214,38 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "function_body",
           "named": true
         },
         {
-          "type": "type_arguments",
+          "type": "function_type",
           "named": true
         },
         {
-          "type": "type_identifier",
+          "type": "nullable_type",
+          "named": true
+        },
+        {
+          "type": "parameters_with_optional_type",
+          "named": true
+        },
+        {
+          "type": "parenthesized_type",
+          "named": true
+        },
+        {
+          "type": "type_constraints",
+          "named": true
+        },
+        {
+          "type": "type_modifiers",
+          "named": true
+        },
+        {
+          "type": "user_type",
           "named": true
         }
       ]
@@ -5614,6 +5634,21 @@
         },
         {
           "type": "user_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parameters_with_optional_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "parameter_with_optional_type",
           "named": true
         }
       ]

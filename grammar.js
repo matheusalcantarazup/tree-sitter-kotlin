@@ -45,7 +45,9 @@ const PREC = {
 	BLOCK: 1,
 	LAMBDA_LITERAL: 0,
 	RETURN_OR_THROW: 0,
-	COMMENT: 0
+	COMMENT: 0,
+    PARAMETER_WITH_OPTIONAL_TYPE: 2,
+    PARAMETER_MODIFIERS: 2,
 };
 const DEC_DIGITS = token(sep1(/[0-9]+/, /_+/));
 const HEX_DIGITS = token(sep1(/[0-9a-fA-F]+/, /_+/));
@@ -319,11 +321,11 @@ module.exports = grammar({
 
 		parameters_with_optional_type: $ => seq("(", sep1($.parameter_with_optional_type, ","), ")"),
 
-		parameter_with_optional_type: $ => seq(
+		parameter_with_optional_type: $ => prec(PREC.PARAMETER_WITH_OPTIONAL_TYPE, seq(
 			optional($.parameter_modifiers),
 			$.simple_identifier,
 			optional(seq(":", $._type))
-		),
+		)),
 
 		parameter: $ => seq($.simple_identifier, ":", $._type),
 
@@ -703,8 +705,10 @@ module.exports = grammar({
 
 		anonymous_function: $ => seq(
 			"fun",
-			optional(seq(sep1($._simple_user_type, "."), ".")), // TODO
-			"(", ")",
+            optional(seq($._type, ".")),
+            $.parameters_with_optional_type,
+            optional(seq(":", $._type)),
+            optional($.type_constraints),
 			optional($.function_body)
 		),
 
@@ -858,7 +862,7 @@ module.exports = grammar({
 
 		modifiers: $ => repeat1(choice($.annotation, $._modifier)),
 
-		parameter_modifiers: $ => repeat1(choice($.annotation, $.parameter_modifier)),
+		parameter_modifiers: $ => prec(PREC.PARAMETER_MODIFIERS, choice($.annotation, repeat1($.parameter_modifier))),
 
 		_modifier: $ => choice(
 			$.class_modifier,
