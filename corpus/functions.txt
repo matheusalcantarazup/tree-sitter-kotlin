@@ -129,3 +129,25 @@ fun answerToTheUltimateQuestionOfLifeTheUniverseAndEverything(): Int = 42
 		(user_type (type_identifier))
 		(function_body (integer_literal))))
 
+==================
+Single-expression functions
+==================
+
+fun double(x: Int): Int = x * 2
+
+fun SomeObject.double(x: Int) = x * 2
+
+---
+
+(source_file 
+    (function_declaration (simple_identifier) 
+        (parameter (simple_identifier)
+            (user_type (type_identifier)))
+                (user_type (type_identifier))
+                    (function_body (multiplicative_expression
+                        (simple_identifier) (integer_literal))))
+
+    (function_declaration (receiver_type (type_identifier))
+        (simple_identifier)
+            (parameter (simple_identifier) (user_type (type_identifier)))
+                (function_body (multiplicative_expression (simple_identifier) (integer_literal)))))
