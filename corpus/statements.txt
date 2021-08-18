@@ -30,3 +30,26 @@ foo = 3
     (directly_assignable_expression
       (simple_identifier))
     (integer_literal)))
+
+
+==================
+Return Statement
+==================
+
+fun foo(x: Int) {
+    return x
+}
+
+---
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+    (function_body
+      (statements
+        (jump_expression
+          (simple_identifier))))))

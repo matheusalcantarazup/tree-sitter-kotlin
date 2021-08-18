@@ -3012,7 +3012,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "_expression"
+            "name": "range_expression"
           },
           {
             "type": "SYMBOL",
@@ -3020,7 +3020,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_expression"
+            "name": "range_expression"
           }
         ]
       }
@@ -3033,7 +3033,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "_expression"
+            "name": "infix_expression"
           },
           {
             "type": "STRING",
@@ -3041,7 +3041,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_expression"
+            "name": "infix_expression"
           }
         ]
       }
