@@ -258,8 +258,8 @@ module.exports = grammar({
 
 		function_declaration: $ => prec.right(seq( // TODO
 			optional($.modifiers),
-			optional($.type_parameters),
 			"fun",
+			optional($.type_parameters),
 			$.simple_identifier,
 			$._function_value_parameters,
 			optional(seq(":", $._type)),
